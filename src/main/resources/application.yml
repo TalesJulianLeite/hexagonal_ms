@@ -3,7 +3,7 @@ application:
 basePath: com.leite.tales.default_hexagonal
 info:
   app:
-    description: API padr�o hexagonal
+    description: API padrao hexagonal
     name: default_hexagonal
     version: 1.0.0
 jwt:
