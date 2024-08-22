@@ -1,0 +1,62 @@
+application:
+  name: default_hexagonal
+basePath: com.leite.tales.default_hexagonal
+info:
+  app:
+    description: API padr�o hexagonal
+    name: default_hexagonal
+    version: 1.0.0
+jwt:
+  expiration: 86400
+  secret: d3b7b5c85ec71e3f70a8e0c75db3aa39d3b7b5c85ec71e3f70a8e0c75db3aa39d3b7b5c85ec71e3f70a8e0c75db3aa39d3b7b5c85ec71e3f70a8e0c75db3aa39d3b7b5c85ec71e3f70a8e0c75db3aa39
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        exclude: shutdown
+        include: '*'
+  server:
+    port: 8081
+resilience4j:
+  circuitbreaker:
+    instances:
+      myCircuitBreaker:
+        eventConsumerBufferSize: 10
+        failureRateThreshold: 50
+        minimumNumberOfCalls: 5
+        permittedNumberOfCallsInHalfOpenState: 3
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        waitDurationInOpenState: 10s
+server:
+  port: 8080
+spring:
+  datasource:
+    driverClassName: org.h2.Driver
+    password: password
+    url: jdbc:h2:file:/data/demo;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=MYSQL
+    username: sa
+  devtools:
+    add-properties: true
+  h2:
+    console:
+      enabled: true
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+  main:
+    allow-circular-references: true
+springdoc:
+  api-docs:
+    enabled: true
+    path: /api-docs
+  swagger-ui:
+    configUrl: /v3/api-docs
+    operationsSorter: method
